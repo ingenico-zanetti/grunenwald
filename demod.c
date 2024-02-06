@@ -588,6 +588,7 @@ int main(int argc, char *argv[]){
 	const char *outputFileName = NULL;
 	const char *powerFileName = NULL;
 	const char *crossProductFileName = NULL;
+	FILE *crossProductFile = NULL;
 	int verbose = 0;
 	unsigned int sampleRate = 2048000;
 	memset(&startTime, 0, sizeof(startTime));
@@ -620,7 +621,7 @@ int main(int argc, char *argv[]){
 			break;
 			case 'c':
 				crossProductFileName = strdup(optarg);
-				fopen(crossProductFileName, "wb+");
+				crossProductFile = fopen(crossProductFileName, "wb+");
 			break;
 			case 'v':
 				verbose++;
@@ -724,6 +725,9 @@ int main(int argc, char *argv[]){
 	}
 	FMDecoderFree(&fm);
 	close(fd);
+	if(crossProductFile){
+		fclose(crossProductFile);
+	}
 	return(0);
 }
 

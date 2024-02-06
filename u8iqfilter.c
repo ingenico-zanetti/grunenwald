@@ -62,7 +62,9 @@ int main(int argc, char *argv[]){
 				input[i].I = u16filterUpdate(&iFilter, (unsigned short)(input[i].I));
 				input[i].Q = u16filterUpdate(&qFilter, (unsigned short)(input[i].Q));
 			}
-			write(STDOUT_FILENO, input, byteRead);
+			if(write(STDOUT_FILENO, input, byteRead) < 0){
+				break;
+			}
 		}else{
 			break;
 		}
