@@ -9,8 +9,8 @@ Encoding is rather special, using a 2-bit ON par nibble, so 4-bit ON per byte, o
 The program is intended to run on a Pi3A+, so it has been splitted into a low pass filter (averaging filter on I and Q channel)
 and a demodulator/decoder program (that outputs an ASCII representation of the decoded data) to run on multiple core.
 The input is an usigned char IQ stream coming from a cheap RTL-SDR dongle, piped from rtl_sdr to u8iqfilter then to demod.
-Signal capture, filtering and demodulating / decoding uses less a core at 1Msps.
+Signal capture, filtering and demodulating / decoding uses less than a core at 1Msps.
 
 The BPSK decoding runs on IQ and simply detects the sign of the frequency offset using cross-product of successive samples.
-So it should ne extremely robust to carrier frequency shift and jitter (up to the actual Frequency offset).
+So it should be extremely robust to carrier frequency shift and jitter (up to the actual Frequency offset).
 
