@@ -1,7 +1,7 @@
 # grunenwald
 Decoding utility for Grunenwald scorer remote control
 
-The unit whose signal was reversed-engineered is a GD 2100 ECO
+The unit whose signal was reverse-engineered is a GD 2100 ECO
 It has been found to transmit a BFSK signal around 433.92MHz (frequency deviation is about 30KHz from center frequency)
 Baudrate is around 39400. The data seem to be transmitted asynchronously, with 1 Start, 8 data, 1 parity and 1 stop.
 Encoding is rather special, using a 2-bit ON par nibble, so 4-bit ON per byte, one byte representing 1 digit on the scoreboard
