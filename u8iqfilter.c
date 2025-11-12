@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define BLOCK_SIZE (1204)
+#define BLOCK_SIZE (1024)
 
 typedef struct {
 	unsigned char I;
@@ -17,12 +17,15 @@ typedef struct {
 	unsigned short *data;
 } u16filter_s;
 
-static void u16filterInit(u16filter_s *f, int logSize){
+static void u16filterInit(u16filter_s *f, int logSize, unsigned short initialValue){
 	f->logSize = logSize;
 	f->size = (1 << logSize);
 	f->data = (unsigned short *)calloc(f->size, sizeof(unsigned short));
+	f->somme = initialValue * f->size;
+	for(int i = 0 ; i < f->size ; i++){
+		f->data[i] = initialValue;
+	}
 	f->index = f->size - 1;
-	f->somme = 0;
 }
 
 static unsigned short u16filterUpdate(u16filter_s *f, unsigned short sample){
@@ -51,8 +54,8 @@ int main(int argc, char *argv[]){
 	u16filter_s qFilter;
 
 	// fprintf(stderr, "filterLogSize=%d" "\n", filterLogSize);
-	u16filterInit(&iFilter, filterLogSize);
-	u16filterInit(&qFilter, filterLogSize);
+	u16filterInit(&iFilter, filterLogSize, 128);
+	u16filterInit(&qFilter, filterLogSize, 128);
 
 	for(;;){
 		int byteRead = read(STDIN_FILENO, input, sizeof(input));
