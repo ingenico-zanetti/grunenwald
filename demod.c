@@ -1,4 +1,6 @@
 #define _LARGEFILE64_SOURCE
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -488,7 +490,7 @@ static void printTimeStamp(Grunenwald *g, SerialDecoder *sd){
 	}else{
 		struct timeval tv;
 		gettimeofday(&tv, NULL);
-		fprintf(stdout, "%10ld.%06ld  : ", tv.tv_sec, tv.tv_usec);
+		fprintf(stdout, "%10" SCNd64 ".%06" SCNd64 " : ", tv.tv_sec, tv.tv_usec);
 	}
 }
 
