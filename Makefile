@@ -19,4 +19,4 @@ u8iqfilter: u8iqfilter.c
 	$(CC) -Wall -Werror -O3 -o u8iqfilter u8iqfilter.c
 
 install: all
-	cp -vf demod2 demod highlight resample u8iqfilter ~/bin
+	cp -vf demod2 demod highlight resample u8iqfilter scoreboardsdr.bash ~/bin
