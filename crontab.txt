@@ -1,0 +1,2 @@
+@reboot screen -S SCOREBOARD -dm bash -c "sleep 10 ; cd /home/azanetti/bin ; ./scoreboardsdr.bash "
+
