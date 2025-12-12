@@ -1,4 +1,4 @@
-all:demod2 demod highlight resample u8iqfilter
+all:demod3 demod2 demod highlight resample u8iqfilter
 
 #CC_OPT=-pg
 CC_OPT=-O3
@@ -8,6 +8,9 @@ demod: demod.c
 
 demod2: demod2.c
 	$(CC) -Wall -Werror $(CC_OPT) -o demod2 demod2.c -lm
+
+demod3: demod3.c
+	$(CC) -Wall -Werror $(CC_OPT) -o demod3 demod3.c -lm
 
 highlight: highlight.c
 	$(CC) -Wall -Werror -O3 -o highlight highlight.c -lm
@@ -19,4 +22,4 @@ u8iqfilter: u8iqfilter.c
 	$(CC) -Wall -Werror -O3 -o u8iqfilter u8iqfilter.c
 
 install: all
-	cp -vf demod2 demod highlight resample u8iqfilter scoreboardsdr.bash ~/bin
+	cp -vf demod3 demod2 demod highlight resample u8iqfilter scoreboardsdr.bash ~/bin
