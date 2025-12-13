@@ -6,5 +6,5 @@ while sleep 10
 do
 	date >> $HOME/bin/scoreboardsdr.log
 	# (rtl_sdr -f 433.92e6 -s 1024e3 -g -24 - | tee $(date +%Y%m%d-%H%M%S.iq) | u8iqfilter | demod3 --rate 1024000 --inputfile - | tee -a scoreboard.log | nc -w 60 127.0.0.1 8366) 2>> $HOME/bin/$(date +%Y%m%d-%H%M%S.scoreboardsdr.log)
-	(rtl_sdr -f 433.92e6 -s 1024e3 -g -24 - | u8iqfilter | demod3 --rate 1024000 --inputfile - | tee -a $(date +%Y%m%d-%H%M%S.scoreboard.log) | nc -w 60 127.0.0.1 8366) 2>> $HOME/bin/$(date +%Y%m%d-%H%M%S.scoreboardsdr.log)
+	(rtl_sdr -f 433.92e6 -s 1024e3 -g -24 - | u8iqfilter | demod3 --rate 1024000 --inputfile - | tee -a $(date +%Y%m%d-%H%M%S.scoreboard.log) | socat - TCP4:127.0.0.1:8366,nodelay) 2>> $HOME/bin/$(date +%Y%m%d-%H%M%S.scoreboardsdr.log)
 done

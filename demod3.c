@@ -484,7 +484,7 @@ void serialDecode(struct FrameDecoder *decoder){
 	}
 	if(0 == abort){
 		// Check Frame
-		// Sync Word seams to be 0xF1A5
+		// Sync Word seams to be 0x8F
 		if(length > 3){
 			if(0xF1 == decodedFrame[length - 1]){
 				// Complet frame
@@ -511,6 +511,7 @@ void serialDecode(struct FrameDecoder *decoder){
 					}
 					fputc('\n', stdout);
 				}
+				fflush(stdout); // when running the output through a pipe, \n doesn't flush
 			}
 		}
 	}
